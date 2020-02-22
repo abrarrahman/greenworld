@@ -32,6 +32,10 @@ const onSubmitSuccess = () => {
     $('#emailAddress').prop('value','');
     $('#message').prop('value','');
 }
+const newForm = () => {
+    $('.emailSent').addClass('d-none');
+    $('.thanks').addClass('d-none');
+}
 const ContactForm = () => {
 
     return(
@@ -43,7 +47,7 @@ const ContactForm = () => {
                         type="email" 
                         placeholder="name@example.com" 
                         required 
-                        onChange={()=>$('.thanks').addClass('d-none')}
+                        onChange={newForm}
                     />
                     <Form.Text className="text-muted"><span className='red'>*</span>Your email is required so we can contact you, we'll never share it with anyone else.</Form.Text>
                 </Form.Group>
@@ -52,7 +56,7 @@ const ContactForm = () => {
                     <Form.Control 
                         as="textarea" 
                         rows="3" 
-                        onChange={()=>$('.thanks').addClass('d-none')}
+                        onChange={newForm}
                     />
                 </Form.Group>
                 <Form.Text className="thanks mb3 green f5 d-none">Thank you for contacting us! Your submission was successful.</Form.Text>
