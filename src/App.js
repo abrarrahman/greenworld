@@ -58,9 +58,6 @@ class App extends Component {
         }
         <div className='w-80 center mv5'>{dummy.lorem500}</div>
         <Footer/>
-        {/* <Jumbotron/>
-        <Showcase/>
-         */}
       </div>
     );
   }

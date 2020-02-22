@@ -14,6 +14,18 @@ const handleSubmit = event => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(contactInfo)
     }).then(onSubmitSuccess)
+    fetch('http://localhost:3001/mail',{
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(contactInfo)
+    }).then(res=> res.json()).then(res=>{
+        if(res!=='error'){
+            onEmailSent();
+        }
+    })
+}
+const onEmailSent = () => {
+    $('.emailSent').removeClass('d-none');
 }
 const onSubmitSuccess = () => {
     $('.thanks').removeClass('d-none');
@@ -43,7 +55,8 @@ const ContactForm = () => {
                         onChange={()=>$('.thanks').addClass('d-none')}
                     />
                 </Form.Group>
-                <Form.Text className="thanks mb3 d-none">Thank you for contacting us! Your submission was successful.</Form.Text>
+                <Form.Text className="thanks mb3 green f5 d-none">Thank you for contacting us! Your submission was successful.</Form.Text>
+                <Form.Text className="emailSent mb3 green f5 d-none">A confirmation email has been sent to the address you provided.</Form.Text>
                 <input className="f5 br2 b--green ba ph3 pv2 mb2 dib green hover-bg-green hover-white" type='submit'/>
             </Form>
         </div>
